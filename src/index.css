@@ -1,0 +1,208 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ---------------------------------------------------------------------------
+   Theme tokens (RGB triplets so Tailwind can apply alpha).
+   --------------------------------------------------------------------------- */
+:root {
+  --c-app: 240 242 245;
+  --c-panel: 255 255 255;
+  --c-panel-2: 240 242 245;
+  --c-hover: 245 246 246;
+  --c-line: 233 237 239;
+  --c-ink: 17 27 33;
+  --c-muted: 84 101 111;
+  --c-brand: 0 128 105;
+  --c-brand-strong: 0 92 75;
+  --c-accent: 37 211 102;
+  --c-on-accent: 11 20 26;
+  --c-bubble-in: 255 255 255;
+  --c-bubble-out: 217 253 211;
+  --c-bubble-meta: 102 119 129;
+  --c-chip: 255 255 255;
+  --c-chip-ink: 84 101 111;
+  --c-notice: 255 238 205;
+  --c-notice-ink: 84 101 111;
+  --c-danger: 214 0 52;
+  --c-mark: 255 214 0;
+  --c-flash: 0 168 132;
+  --c-wall: 239 234 226;
+  --c-doodle: 0 0 0 / 0.06;
+
+  /* Sender name colours for group chats (index = participant.color). */
+  --sender-0: 0 128 105;
+  --sender-1: 187 76 30;
+  --sender-2: 2 119 189;
+  --sender-3: 159 37 126;
+  --sender-4: 22 128 61;
+  --sender-5: 178 33 85;
+  --sender-6: 88 76 199;
+  --sender-7: 165 105 0;
+  --sender-8: 0 120 133;
+  --sender-9: 194 36 36;
+  --sender-10: 93 109 21;
+  --sender-11: 120 72 190;
+
+  -webkit-tap-highlight-color: transparent;
+}
+
+.dark {
+  --c-app: 12 19 24;
+  --c-panel: 17 27 33;
+  --c-panel-2: 32 44 51;
+  --c-hover: 32 44 51;
+  --c-line: 34 45 52;
+  --c-ink: 233 237 239;
+  --c-muted: 134 150 160;
+  --c-brand: 0 168 132;
+  --c-brand-strong: 33 192 99;
+  --c-accent: 33 192 99;
+  --c-on-accent: 11 20 26;
+  --c-bubble-in: 32 44 51;
+  --c-bubble-out: 0 92 75;
+  --c-bubble-meta: 152 172 180;
+  --c-chip: 24 34 41;
+  --c-chip-ink: 134 150 160;
+  --c-notice: 24 34 41;
+  --c-notice-ink: 255 210 121;
+  --c-danger: 241 92 109;
+  --c-mark: 255 196 0;
+  --c-flash: 0 168 132;
+  --c-wall: 11 20 26;
+  --c-doodle: 255 255 255 / 0.045;
+
+  --sender-0: 6 207 156;
+  --sender-1: 255 141 92;
+  --sender-2: 83 189 235;
+  --sender-3: 230 120 196;
+  --sender-4: 113 213 129;
+  --sender-5: 255 114 161;
+  --sender-6: 167 145 255;
+  --sender-7: 255 188 56;
+  --sender-8: 2 214 214;
+  --sender-9: 252 120 120;
+  --sender-10: 196 222 90;
+  --sender-11: 199 156 255;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  @apply bg-app text-ink antialiased;
+  margin: 0;
+  overscroll-behavior: none;
+  font-size: 15px;
+}
+
+/* Full-height app frame that respects the on-screen keyboard and notches. */
+.app-frame {
+  height: 100vh;
+  height: 100dvh;
+  padding-left: env(safe-area-inset-left);
+  padding-right: env(safe-area-inset-right);
+}
+
+.safe-top {
+  padding-top: env(safe-area-inset-top);
+}
+
+.safe-bottom {
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+/* WhatsApp-style chat wallpaper with an original doodle tile. */
+.chat-wallpaper {
+  position: relative;
+  background-color: rgb(var(--c-wall));
+  isolation: isolate;
+}
+.chat-wallpaper::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background-color: rgb(var(--c-doodle));
+  -webkit-mask-image: url('./assets/wallpaper.svg');
+  mask-image: url('./assets/wallpaper.svg');
+  -webkit-mask-size: 260px 260px;
+  mask-size: 260px 260px;
+  -webkit-mask-repeat: repeat;
+  mask-repeat: repeat;
+  pointer-events: none;
+}
+
+.sender-color {
+  color: rgb(var(--sender-color));
+}
+.avatar-color {
+  background-color: rgb(var(--sender-color) / 0.18);
+  color: rgb(var(--sender-color));
+}
+
+/* Bubble tails (drawn with CSS so they follow the theme colours). */
+.tail-in::before,
+.tail-out::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  width: 8px;
+  height: 13px;
+}
+.tail-in::before {
+  left: -8px;
+  background: rgb(var(--c-bubble-in));
+  clip-path: polygon(0 0, 100% 0, 100% 100%);
+}
+.tail-out::before {
+  right: -8px;
+  background: rgb(var(--c-bubble-out));
+  clip-path: polygon(0 0, 100% 0, 0 100%);
+}
+
+.msg-text {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+mark.hl {
+  background: rgb(var(--c-mark) / 0.55);
+  color: inherit;
+  border-radius: 2px;
+}
+mark.hl-active {
+  background: rgb(var(--c-mark));
+  color: #111b21;
+}
+
+/* Thin scrollbars on desktop. */
+.scroll-thin {
+  scrollbar-width: thin;
+  scrollbar-color: rgb(var(--c-muted) / 0.35) transparent;
+}
+.scroll-thin::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+.scroll-thin::-webkit-scrollbar-thumb {
+  background: rgb(var(--c-muted) / 0.35);
+}
+
+:focus-visible {
+  outline: 2px solid rgb(var(--c-brand));
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <!-- Chatss app icon (original artwork). -->
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#1fbf86"/>
+      <stop offset="1" stop-color="#00735e"/>
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="116" fill="url(#g)"/>
+  <path d="M146 136h220c30 0 54 24 54 54v112c0 30-24 54-54 54H226l-70 52c-8 6-18 0-18-9v-43c-28-3-46-26-46-54V190c0-30 24-54 54-54z" fill="#fff"/>
+  <rect x="160" y="196" width="164" height="22" rx="11" fill="#00a884"/>
+  <rect x="160" y="238" width="196" height="22" rx="11" fill="#00a884" opacity=".75"/>
+  <rect x="160" y="280" width="112" height="22" rx="11" fill="#00a884" opacity=".5"/>
+</svg>

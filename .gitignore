@@ -1,0 +1,41 @@
+# Dependencies & build output
+node_modules/
+dist/
+dev-dist/
+*.tsbuildinfo
+coverage/
+
+# Test output
+test-results/
+playwright-report/
+blob-report/
+playwright/.cache/
+
+# Environment & secrets
+.env
+.env.*
+!.env.example
+
+# Private data - NEVER commit real chats, media, or backups
+*.zip
+chats/
+exports/
+private/
+backups/
+*.chatss-backup
+*.chatss.zip
+WhatsApp Chat*.txt
+_chat.txt
+*.opus
+*.jpg
+*.jpeg
+*.mp4
+*.webp
+!public/**/*.webp
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/*
+!.vscode/extensions.json
+*.log
